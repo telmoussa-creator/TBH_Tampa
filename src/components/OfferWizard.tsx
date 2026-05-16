@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sparkles, Loader2, AlertCircle } from "lucide-react";
 import { formatUSD } from "@/lib/utils";
+import { IS_DEMO, demoOffer } from "@/lib/demo";
 import type { AVMResult, PropertyFacts } from "@/types";
 
 type Step = "facts" | "loading" | "result" | "error";
@@ -37,6 +38,11 @@ export function OfferWizard({ initialAddress = "" }: { initialAddress?: string }
     setStep("loading");
     setError("");
     try {
+      if (IS_DEMO) {
+        setOffer(await demoOffer(facts.address));
+        setStep("result");
+        return;
+      }
       const res = await fetch("/api/avm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

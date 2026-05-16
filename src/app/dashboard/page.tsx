@@ -2,25 +2,10 @@ import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
 import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 import { LeadsBoard } from "@/components/LeadsBoard";
-import type { LeadScore } from "@/types";
+import type { LeadRow } from "@/types";
 
 export const metadata = { title: "Operator dashboard" };
 export const dynamic = "force-dynamic";
-
-export type LeadRow = {
-  id: string;
-  created_at: string;
-  name: string;
-  phone: string;
-  email: string | null;
-  address: string;
-  reason: string | null;
-  timeline: string | null;
-  notes: string | null;
-  tier: "hot" | "warm" | "cool" | "cold" | null;
-  status: string;
-  ai_score: LeadScore | null;
-};
 
 export default async function DashboardPage() {
   const admin = await getAdminUser();

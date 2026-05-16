@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ChatConcierge } from "@/components/ChatConcierge";
+import { DemoBanner } from "@/components/DemoBanner";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tarekbuyshouses.com";
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <DemoBanner />
         <Nav />
         <main className="min-h-[80vh]">{children}</main>
         <Footer />

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Loader2, Upload, AlertCircle } from "lucide-react";
 import { formatUSD } from "@/lib/utils";
+import { IS_DEMO, demoPhotoAssessment } from "@/lib/demo";
 import type { PhotoAssessment } from "@/types";
 
 export function PhotoUpload() {
@@ -24,6 +25,10 @@ export function PhotoUpload() {
     setBusy(true);
     setError("");
     try {
+      if (IS_DEMO) {
+        setAssessment(await demoPhotoAssessment());
+        return;
+      }
       const photos = await Promise.all(
         files.map(
           (f) =>

@@ -1,13 +1,8 @@
-import { OfferWizard } from "@/components/OfferWizard";
+import { OfferWizardWithParams } from "@/components/OfferWizardWithParams";
 
 export const metadata = { title: "Get your AI cash offer" };
 
-export default async function OfferPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ address?: string }>;
-}) {
-  const { address } = await searchParams;
+export default function OfferPage() {
   return (
     <div className="bg-gradient-to-b from-brand-50 to-white py-12">
       <div className="section">
@@ -20,7 +15,7 @@ export default async function OfferPage({
             Takes about 30 seconds. We'll show you a real number, not a "we'll call you" form.
           </p>
         </header>
-        <OfferWizard initialAddress={address ?? ""} />
+        <OfferWizardWithParams />
       </div>
     </div>
   );

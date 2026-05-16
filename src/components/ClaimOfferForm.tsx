@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { IS_DEMO, demoLeadScore } from "@/lib/demo";
 import type { LeadScore } from "@/types";
 
 type Status = "idle" | "submitting" | "ok" | "error";
@@ -29,6 +30,11 @@ export function ClaimOfferForm({ address }: { address: string }) {
     setStatus("submitting");
     setErrorMsg("");
     try {
+      if (IS_DEMO) {
+        setScore(await demoLeadScore(form.reason));
+        setStatus("ok");
+        return;
+      }
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

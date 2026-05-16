@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
+import { DEMO_CHAT_GREETING, DEMO_CHAT_REPLY, IS_DEMO, delay } from "@/lib/demo";
 import type { ChatMessage } from "@/types";
 
 const GREETING: ChatMessage = {
   role: "assistant",
-  content:
-    "Hey, I'm the TBH concierge. I can give you a quick cash-offer estimate or answer any question about selling to us. What's the property address?",
+  content: IS_DEMO
+    ? DEMO_CHAT_GREETING
+    : "Hey, I'm the TBH concierge. I can give you a quick cash-offer estimate or answer any question about selling to us. What's the property address?",
 };
 
 export function ChatConcierge() {
@@ -31,6 +33,19 @@ export function ChatConcierge() {
     setStreaming(true);
 
     try {
+      if (IS_DEMO) {
+        const reply = DEMO_CHAT_REPLY(text);
+        let acc = "";
+        for (const ch of reply) {
+          acc += ch;
+          setMessages((m) => {
+            const copy = m.slice();
+            copy[copy.length - 1] = { role: "assistant", content: acc };
+            return copy;
+          });
+          await delay(8);
+        }
+      } else {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,6 +65,7 @@ export function ChatConcierge() {
           copy[copy.length - 1] = { role: "assistant", content: acc };
           return copy;
         });
+      }
       }
     } catch (err) {
       setMessages((m) => {

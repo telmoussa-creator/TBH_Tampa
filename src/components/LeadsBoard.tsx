@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Flame, Phone, MessageSquareText, ChevronRight, Loader2 } from "lucide-react";
 import { formatPhone } from "@/lib/utils";
-import type { LeadRow } from "@/app/dashboard/page";
+import type { LeadRow } from "@/types";
 
 const COLUMNS: { key: string; label: string }[] = [
   { key: "new", label: "New" },

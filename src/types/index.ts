@@ -70,3 +70,18 @@ export type ChatMessage = {
   role: "user" | "assistant";
   content: string;
 };
+
+export type LeadRow = {
+  id: string;
+  created_at: string;
+  name: string;
+  phone: string;
+  email: string | null;
+  address: string;
+  reason: string | null;
+  timeline: string | null;
+  notes: string | null;
+  tier: "hot" | "warm" | "cool" | "cold" | null;
+  status: string;
+  ai_score: LeadScore | null;
+};

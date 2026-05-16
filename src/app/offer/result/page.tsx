@@ -1,13 +1,8 @@
-import { ClaimOfferForm } from "@/components/ClaimOfferForm";
+import { ClaimWithParams } from "@/components/ClaimWithParams";
 
 export const metadata = { title: "Claim your offer" };
 
-export default async function ClaimPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ address?: string }>;
-}) {
-  const { address } = await searchParams;
+export default function ClaimPage() {
   return (
     <div className="bg-gradient-to-b from-brand-50 to-white py-12">
       <div className="section">
@@ -21,7 +16,7 @@ export default async function ClaimPage({
             date.
           </p>
         </header>
-        <ClaimOfferForm address={address ?? ""} />
+        <ClaimWithParams />
       </div>
     </div>
   );
