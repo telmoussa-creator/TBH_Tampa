@@ -21,6 +21,7 @@ export function Nav() {
           <Link href="/about" className="hover:text-ink">About Tarek</Link>
           <Link href="/reviews" className="hover:text-ink">Reviews</Link>
           <Link href="/faq" className="hover:text-ink">FAQ</Link>
+          <Link href="/dashboard" className="text-ink-muted/60 hover:text-ink">Operator</Link>
         </nav>
 
         <div className="flex items-center gap-3">

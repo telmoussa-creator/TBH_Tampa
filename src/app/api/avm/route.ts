@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { generateOffer } from "@/lib/avm";
+import { enrichFromRentCast, mergeFacts } from "@/lib/property-data";
+import { supabaseAdmin, supabaseConfigured } from "@/lib/supabase-admin";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const Body = z.object({
   address: z.string().min(3),
@@ -32,8 +35,23 @@ export async function POST(req: Request) {
     if (!parsed.success) {
       return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
     }
-    const offer = await generateOffer(parsed.data);
-    return NextResponse.json({ offer });
+
+    const enriched = await enrichFromRentCast(parsed.data.address);
+    const facts = mergeFacts(parsed.data, enriched);
+    const offer = await generateOffer(facts);
+
+    let offerId: string | null = null;
+    if (supabaseConfigured()) {
+      const { data, error } = await supabaseAdmin()
+        .from("offers")
+        .insert({ address: facts.address, facts, avm: offer })
+        .select("id")
+        .single();
+      if (error) console.error("offer insert failed", error);
+      else offerId = (data?.id as string) ?? null;
+    }
+
+    return NextResponse.json({ offer, facts, offerId, enriched_fields: Object.keys(enriched) });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: msg }, { status: 500 });
