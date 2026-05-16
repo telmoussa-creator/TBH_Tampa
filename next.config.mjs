@@ -17,8 +17,8 @@ const nextConfig = {
   },
   ...(isStaticDemo && {
     output: "export",
-    basePath: "/tbh_tampa",
-    assetPrefix: "/tbh_tampa",
+    basePath: "/TBH_Tampa",
+    assetPrefix: "/TBH_Tampa",
     trailingSlash: true,
     skipTrailingSlashRedirect: true,
   }),
