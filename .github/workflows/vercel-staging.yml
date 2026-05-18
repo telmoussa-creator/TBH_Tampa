@@ -1,0 +1,55 @@
+name: Deploy staging to Vercel
+
+# Staging only — never touches the production environment.
+# Triggers on every push to the rebuild branch and on manual dispatch.
+on:
+  push:
+    branches:
+      - claude/rebuild-real-estate-platform-cKSaA
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-staging
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Verify required secrets
+        run: |
+          : "${VERCEL_ORG_ID:?VERCEL_ORG_ID secret is required}"
+          : "${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID secret is required}"
+          : "${VERCEL_TOKEN:?VERCEL_TOKEN secret is required}"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel preview env
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy preview (staging URL)
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "## Staging URL" >> "$GITHUB_STEP_SUMMARY"
+          echo "$url" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Print URL
+        run: echo "Staging deployed to ${{ steps.deploy.outputs.url }}"
