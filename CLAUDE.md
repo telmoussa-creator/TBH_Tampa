@@ -48,6 +48,16 @@ These lines were written before the current `business-context` rules and break t
 - `scripts/sofia-foreclosure-longform-shotlist.md` beat 22 (CTA): "Free offer in twenty-four hours." (fixed timeline, blanket offer)
 - `scripts/sofia-foreclosure-longform-shotlist.md` caption examples on line 58 repeat "seven days" and "free offer in twenty-four hours"
 
+Fact errors in the Sofia foreclosure shotlist, per the `script-compliance-check` skill's list of traps caught before:
+
+- Beat 3: "a friend's garage". It was his mom's garage.
+- Beat 5: "Texas or California? Sixty days." California non-judicial foreclosure is about 4 months minimum.
+- Beat 7: "Ninety-five thousand foreclosure filings. Up fourteen percent." Wrong; Q1 2026 was about 118,727, up 26% year over year. Cite the latest ATTOM report by exact figure.
+- Beat 9: "Modifications are up forty percent this year." Unverified.
+- Beat 13: "Six percent commission." Outdated since the 2024 NAR settlement; commissions are negotiable.
+- Beat 14: "Your credit stays clean." Banned phrase.
+- The video targets homeowners in default and carries none of the four required TBH disclaimers (including the HUD counselor line, 1-800-569-4287). That is an attorney-review trigger, not a copy fix.
+
 ## Voice
 
 **TBH is Tarek's own voice: direct, plain, earned, human.** First person when Tarek himself speaks. Ambassador voice when Sofia/Luke/Valeria speak — same values, delivered on behalf of the team.
