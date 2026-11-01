@@ -28,7 +28,7 @@ These are blanket statements TBH may NOT make, because they are not true on ever
 - ❌ "Cash offer" promised to everyone
 - ❌ "No showings"
 - ❌ "Just a couple of questions"
-- ❌ Any fixed closing timeline (no "14 days" as a blanket promise — it is brand-standard, not a universal guarantee; use "fast / cash / as-is" phrasing, and keep "14 days" only in the brand closer where it already appears)
+- ❌ Any fixed timeline, closing date, or set of terms: no "14 days", "7 to 14 days", "free offer in 24 hours", anywhere, closer included
 
 Also:
 
@@ -37,6 +37,16 @@ Also:
 - Ambassadors (Sofia, Luke, Valeria) do NOT identify as Tarek. "Tarek and our team" / "Tarek Buys Houses has helped thousands" — never "I've helped thousands" in ambassador voice.
 - "Helped thousands" is attributed to brand/team, not the on-camera talent personally.
 - No guaranteed outcomes. No specific dollar promises.
+
+## Known conflicts in existing files (awaiting Tarek's decision)
+
+These lines were written before the current `business-context` rules and break them. Do not copy them into new work. Do not rewrite them without Tarek's OK.
+
+- `scripts/ambassador-scripts.md` line 21, the universal closer: "We close in 14 days. Cash. As-is." (fixed timeline, blanket cash)
+- `scripts/ambassador-scripts.md` line 339, compliance note calling "14 days, cash, as-is" the brand standard. Outdated.
+- `scripts/sofia-foreclosure-longform-shotlist.md` beat 14 (Option 7): "Cash. Seven to fourteen days. Your bank gets paid. Your credit stays clean." (fixed timeline, blanket cash, guaranteed outcomes)
+- `scripts/sofia-foreclosure-longform-shotlist.md` beat 22 (CTA): "Free offer in twenty-four hours." (fixed timeline, blanket offer)
+- `scripts/sofia-foreclosure-longform-shotlist.md` caption examples on line 58 repeat "seven days" and "free offer in twenty-four hours"
 
 ## Voice
 
@@ -72,8 +82,7 @@ Durations:
 
 Shotlists follow the sofia-foreclosure template: top matter (format, talent, source prefix, model), master-timeline table (Beat | In | Out | Dur | Clip ID | File | Line), then Audio / Captions / Export sections. 9:16 vertical, 1080×1920, Reels/TikTok/Shorts.
 
-Universal closer (optional, long-form only):
-> *"Tarek Buys Houses. We close in 14 days. Cash. As-is."*
+The old universal closer ("Tarek Buys Houses. We close in 14 days. Cash. As-is.") is retired because it promises a fixed timeline and a cash deal. Tarek has not approved a replacement yet. Ask before writing one.
 
 ## Workflow (how to use Claude in this repo)
 
